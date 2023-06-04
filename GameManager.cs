@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI textGoal;
     [SerializeField] public int goal;
+
+    [SerializeField] private GameObject retryBtn;
 
     [SerializeField] private Color green;
     [SerializeField] private Color red;
@@ -52,6 +55,17 @@ public class GameManager : MonoBehaviour
             isGameOver = true;
 
             if (Camera.main != null) Camera.main.backgroundColor = success ? green : red;
+            Invoke(nameof(ShowRetryButton), 1f);
         }
+    }
+
+    void ShowRetryButton()
+    {
+        retryBtn.SetActive(true);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }
