@@ -1,25 +1,20 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pin : MonoBehaviour
 {
-    private const String target = "Target";
-    private bool isPinned = false;
-    [SerializeField] private float moveSpeed = 10f;
+    private const String Target = "Target";
+    private const String PinLine = "Square";
+    private bool _isPinned;
     
-    // Start is called before the first frame update
+    [SerializeField] private float moveSpeed = 10f;
     void Start()
     {
-        
+        _isPinned = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if (!isPinned)
+        if (_isPinned == false)
         {
             transform.position += Vector3.up * (moveSpeed * Time.deltaTime);
         }
@@ -27,9 +22,12 @@ public class Pin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        isPinned = true;
-        if (other.gameObject.CompareTag(target))
+        _isPinned = true;
+        if (other.gameObject.CompareTag(Target))
         {
+            GameObject pinLineObject = transform.Find(PinLine).gameObject;
+            SpriteRenderer pinLineSpriteRenderer = pinLineObject.GetComponent<SpriteRenderer>();
+            pinLineSpriteRenderer.enabled = true;
             transform.SetParent(other.gameObject.transform);
         }
     }
