@@ -7,13 +7,11 @@ public class TargetCircle : MonoBehaviour
     private const int DefaultAngle = 0;
     [SerializeField] private float rotateSpeed = -30f;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Rotate(DefaultAngle, DefaultAngle, rotateSpeed * Time.deltaTime);

@@ -6,15 +6,17 @@ public class Pin : MonoBehaviour
     private const String Target = "Target";
     private const String PinLine = "Square";
     private bool _isPinned;
+    private bool _isLaunched;
     
     [SerializeField] private float moveSpeed = 10f;
     void Start()
     {
         _isPinned = false;
+        _isLaunched = false;
     }
     void Update()
     {
-        if (_isPinned == false)
+        if (_isPinned == false && _isLaunched)
         {
             transform.position += Vector3.up * (moveSpeed * Time.deltaTime);
         }
@@ -30,5 +32,10 @@ public class Pin : MonoBehaviour
             pinLineSpriteRenderer.enabled = true;
             transform.SetParent(other.gameObject.transform);
         }
+    }
+
+    public void Launch()
+    {
+        _isLaunched = true;
     }
 }
