@@ -6,9 +6,13 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
+    public bool isGameOver;
 
     [SerializeField] private TextMeshProUGUI textGoal;
-    [SerializeField] private int goal;
+    [SerializeField] public int goal;
+
+    [SerializeField] private Color green;
+    [SerializeField] private Color red;
     
     private void Awake()
     {
@@ -16,6 +20,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        isGameOver = false;
     }
     
     void Start()
@@ -32,5 +38,20 @@ public class GameManager : MonoBehaviour
     {
         goal -= 1;
         textGoal.SetText(goal.ToString());
+
+        if (goal <= 0)
+        {
+            SetGameOver(true);
+        }
+    }
+
+    public void SetGameOver(bool success)
+    {
+        if (isGameOver == false)
+        {
+            isGameOver = true;
+
+            if (Camera.main != null) Camera.main.backgroundColor = success ? green : red;
+        }
     }
 }

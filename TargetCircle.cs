@@ -14,6 +14,9 @@ public class TargetCircle : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(DefaultAngle, DefaultAngle, rotateSpeed * Time.deltaTime);
+        if (GameManager.Instance.isGameOver == false)
+        {
+            transform.Rotate(DefaultAngle, DefaultAngle, rotateSpeed * Time.deltaTime);    
+        }
     }
 }

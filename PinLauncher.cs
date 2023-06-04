@@ -13,7 +13,7 @@ public class PinLauncher : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && _currentPin != null)
+        if (Input.GetMouseButtonDown(0) && _currentPin != null && GameManager.Instance.isGameOver == false)
         {
             _currentPin.Launch();
             _currentPin = null;
@@ -23,7 +23,10 @@ public class PinLauncher : MonoBehaviour
 
     void PreparePin()
     {
-        GameObject pin = Instantiate(pinObject, transform.position, Quaternion.identity);
-        _currentPin = pin.GetComponent<Pin>();
+        if (GameManager.Instance.goal > 0)
+        {
+            GameObject pin = Instantiate(pinObject, transform.position, Quaternion.identity);
+            _currentPin = pin.GetComponent<Pin>();
+        }
     }
 }
