@@ -31,6 +31,8 @@ public class Pin : MonoBehaviour
             SpriteRenderer pinLineSpriteRenderer = pinLineObject.GetComponent<SpriteRenderer>();
             pinLineSpriteRenderer.enabled = true;
             transform.SetParent(other.gameObject.transform);
+
+            GameManager.Instance.DecreaseGoal();
         }
     }
 
