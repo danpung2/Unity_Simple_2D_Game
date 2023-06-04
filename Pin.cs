@@ -14,7 +14,7 @@ public class Pin : MonoBehaviour
         _isPinned = false;
         _isLaunched = false;
     }
-    void Update()
+    void FixedUpdate()
     {
         if (_isPinned == false && _isLaunched)
         {

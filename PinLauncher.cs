@@ -13,9 +13,11 @@ public class PinLauncher : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _currentPin != null)
         {
             _currentPin.Launch();
+            _currentPin = null;
+            Invoke(nameof(PreparePin), 0.1f);
         }
     }
 
