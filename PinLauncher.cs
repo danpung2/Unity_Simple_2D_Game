@@ -23,7 +23,7 @@ public class PinLauncher : MonoBehaviour
 
     void PreparePin()
     {
-        if (GameManager.Instance.goal > 0)
+        if (GameManager.Instance.isGameOver == false)
         {
             GameObject pin = Instantiate(pinObject, transform.position, Quaternion.identity);
             _currentPin = pin.GetComponent<Pin>();
